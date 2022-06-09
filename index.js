@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const Jobsroute = require("./routes/Jobs");
 const authorization = require('./routes/Auth')
 const userprofiles = require('./routes/Users')
+const userskills = require('./routes/UsersSkills')
 const cors = require('cors')
 const app = express();
 
@@ -33,6 +34,7 @@ app.use(
 );
 
 app.use("/api", Jobsroute);
+app.use("/api", userskills);
 app.use("/api", authorization);
 app.use("/api", userprofiles);
 

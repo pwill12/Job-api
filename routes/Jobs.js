@@ -2,6 +2,13 @@ const router = require("express").Router();
 
 const Jobs = require("../models/Jobs");
 
+const {
+  verifyToken,
+  verifyTokenAndAuthorization,
+  verifyTokenAndAdmin,
+} = require("./jwtverify");
+
+
 router.post("/jobs", async function (req, res) {
   const newJobsPost = new Jobs(req.body);
   try {
