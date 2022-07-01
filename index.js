@@ -3,12 +3,12 @@ const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Jobsroute = require("./routes/Jobs");
-const authorization = require('./routes/Auth')
-const userprofiles = require('./routes/Users')
-const userskills = require('./routes/UsersSkills')
-const SavedJobs = require('./routes/Saved')
-const applyJobs = require('./routes/ApplyJobs')
-const cors = require('cors')
+const authorization = require("./routes/Auth");
+const userprofiles = require("./routes/Users");
+const userskills = require("./routes/UsersSkills");
+const SavedJobs = require("./routes/Saved");
+const applyJobs = require("./routes/ApplyJobs");
+const cors = require("cors");
 const app = express();
 
 dotenv.config();
@@ -42,7 +42,12 @@ app.use("/api", userprofiles);
 app.use("/api", SavedJobs);
 app.use("/api", applyJobs);
 
+app.use(express.static(path.join(__dirname, "/client/build")));
 
-app.listen(8000, function () {
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/client/build", "index.html"));
+});
+
+app.listen(process.env.PORT || 5000, function () {
   console.log("started");
 });
