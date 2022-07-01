@@ -9,7 +9,7 @@ const {
 } = require("./jwtverify");
 
 
-router.post("/jobs", async function (req, res) {
+router.post("/jobs",verifyTokenAndAdmin, async function (req, res) {
   const newJobsPost = new Jobs(req.body);
   try {
     const JobsPost = await newJobsPost.save();
@@ -17,6 +17,15 @@ router.post("/jobs", async function (req, res) {
   } catch (error) {
     res.status(500).json(error);
   }
+});
+
+router.get("/findjobs/:id", async function (req, res) {
+  try {
+      const getJobs = await Jobs.findById(req.params.id);
+      res.status(200).json(getJobs);
+    } catch (err) {
+      res.status(500).json(err);
+    }
 });
 
 router.get("/findjobs", async function (req, res) {
@@ -42,7 +51,7 @@ router.get("/findjobs", async function (req, res) {
           if (error) {
             console.log(error);
           } else {
-            console.log(data);
+            // console.log(data);
             res.status(200).json(data);
           }
         }

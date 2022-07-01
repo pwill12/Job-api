@@ -12,7 +12,7 @@ const User = require("../models/Users");
 
 //update users
 
-router.put("/put/:id",verifyToken, async (req, res) => {
+router.put("/put/:id", verifyToken, async (req, res) => {
   if (req.body.password) {
     req.body.password = CryptoJS.AES.encrypt(
       req.body.password,
@@ -24,8 +24,13 @@ router.put("/put/:id",verifyToken, async (req, res) => {
     const updatedUser = await User.findByIdAndUpdate(
       req.params.id,
       {
-        $set: {email: req.body.email, number: req.body.number},
-        // $set: {number: req.body.number},
+        $set: {
+          email: req.body.email,
+          number: req.body.number,
+          website: req.body.website,
+          linked: req.body.linked,
+          img: req.body.img
+        },
       },
       { new: true }
     );
@@ -35,18 +40,16 @@ router.put("/put/:id",verifyToken, async (req, res) => {
   }
 });
 
-router.patch('patch/:id', async (req,res) => {
-  let query = req.params.query
+router.patch("patch/:id", async (req, res) => {
+  let query = req.params.query;
   try {
     const updateskills = await User.findByIdAndUpdate(
       { skills: req.params.skills },
-      { $set: query },
-    )
-    res.status(200).json(updateskills)
-  } catch (error) {
-    
-  }
-})
+      { $set: query }
+    );
+    res.status(200).json(updateskills);
+  } catch (error) {}
+});
 
 router.delete("/:id", async (req, res) => {
   try {

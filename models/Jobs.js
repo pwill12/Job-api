@@ -2,9 +2,14 @@ const mongoose = require("mongoose");
 
 const JobsSchema = new mongoose.Schema(
   {
-    Img: { type: String, required: true, unique: true },
+    img: { type: String, required: true, unique: true },
     title: { type: String, required: true, },
-    Location: { type: String, required: true },
+    content: { type: String, required: true},
+    location: { type: Array, required: true },
+    responsibilities: { type: Array , required: false},
+    qualifications: { type: Array},
+    vacancy: { type: Number},
+    salary: { type: Array},
     time: { type: String},
     tag: { type: Array },
   },

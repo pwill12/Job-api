@@ -6,6 +6,8 @@ const Jobsroute = require("./routes/Jobs");
 const authorization = require('./routes/Auth')
 const userprofiles = require('./routes/Users')
 const userskills = require('./routes/UsersSkills')
+const SavedJobs = require('./routes/Saved')
+const applyJobs = require('./routes/ApplyJobs')
 const cors = require('cors')
 const app = express();
 
@@ -37,6 +39,9 @@ app.use("/api", Jobsroute);
 app.use("/api", userskills);
 app.use("/api", authorization);
 app.use("/api", userprofiles);
+app.use("/api", SavedJobs);
+app.use("/api", applyJobs);
+
 
 app.listen(8000, function () {
   console.log("started");
