@@ -42,6 +42,6 @@ app.use("/api", userprofiles);
 app.use("/api", SavedJobs);
 app.use("/api", applyJobs);
 
-app.listen(process.env.PORT || 5000, function () {
+app.listen(process.env.PORT || 3000, function () {
   console.log("started");
 });
