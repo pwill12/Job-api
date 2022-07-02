@@ -22,9 +22,9 @@ mongoose
 
 const corsOptions = {
   origin: "https://willjobs.netlify.app",
-  methods: ["GET", "POST", "PUT", "PATCH"],
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
+  // methods: ["GET", "POST", "PUT", "PATCH"],
+  "Access-Control-Allow-Credentials": true,
+  // optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
 
