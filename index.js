@@ -36,11 +36,7 @@ app.use(
   })
 );
 
-app.use(
-  "/api",
-  res.setHeader("Access-Control-Allow-Origin", "https://willjobs.netlify.app"),
-  Jobsroute
-);
+app.use("/api", Jobsroute);
 app.use("/api", userskills);
 app.use("/api", authorization);
 app.use("/api", userprofiles);
