@@ -36,7 +36,7 @@ app.use(
   })
 );
 
-app.use("/api", Jobsroute);
+app.use("/api", res.setHeader("Access-Control-Allow-Origin", "*"), Jobsroute);
 app.use("/api", userskills);
 app.use("/api", authorization);
 app.use("/api", userprofiles);
