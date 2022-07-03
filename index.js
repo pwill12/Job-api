@@ -21,7 +21,7 @@ mongoose
   });
 
 const corsOptions = {
-  origin: "https://willjobs.netlify.app",
+  origin: "*",
   // methods: ["GET", "POST", "PUT", "PATCH"],
   "Access-Control-Allow-Credentials": true,
   // optionSuccessStatus: 200,
