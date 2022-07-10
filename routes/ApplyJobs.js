@@ -1,9 +1,9 @@
 const Apply = require("../models/Apply");
 const Jobs = require("../models/Jobs");
-const { verifyTokenAndAuthorization } = require("./jwtverify");
+const { verifyTokenAndAuthorization, verifyToken } = require("./jwtverify");
 const router = require("express").Router();
 
-router.post("/apply", verifyTokenAndAuthorization, async(req, res) => {
+router.post("/apply", async(req, res) => {
     try {
         Apply.findOne({ 'user': req.body.user }).exec((err, jobs) => {
             if (err) return res.status(400).json({ err });
