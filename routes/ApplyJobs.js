@@ -45,7 +45,7 @@ router.post("/apply", async(req, res) => {
     }
 });
 
-router.get("/findapplied/:id", verifyTokenAndAuthorization, async function(req, res) {
+router.get("/findapplied/:id", async function(req, res) {
     const myuserid = req.params.id;
     try {
         const user = await Apply.findOne({ 'user': myuserid });
