@@ -1,30 +1,45 @@
 require("dotenv").config()
 const router = require("express").Router();
 const stripe = require("stripe")(process.env.STRIPE_KEY)
-const cors = require("cors")
+    // const cors = require("cors")
 
-router.post("/payment", cors(), async(req, res) => {
+router.post("/payment", async(req, res) => {
     let { amount, id } = req.body
-    try {
-        const payment = await stripe.paymentIntents.create({
+        // try {
+        //     const payment = await stripe.charges.create({
+        //         amount,
+        //         currency: "USD",
+        //         description: "Will",
+        //         payment_method: id,
+        //         confirm: true
+        //     })
+        //     console.log("Payment", payment)
+        //     res.json({
+        //         message: "Payment successful",
+        //         success: true
+        //     })
+        // } catch (error) {
+        //     console.log("Error", error)
+        //     res.json({
+        //         message: "Payment failed",
+        //         success: false
+        //     })
+        // }
+
+    stripe.charges.create({
             amount,
-            currency: "USD",
-            description: "Spatula company",
-            payment_method: id,
-            confirm: true
-        })
-        console.log("Payment", payment)
-        res.json({
-            message: "Payment successful",
-            success: true
-        })
-    } catch (error) {
-        console.log("Error", error)
-        res.json({
-            message: "Payment failed",
-            success: false
-        })
-    }
+            payment_id: id,
+            //   amount: req.body.amount,
+            currency: "usd",
+        },
+        (stripeErr, stripeRes) => {
+            if (stripeErr) {
+                res.status(500).json(stripeErr);
+            } else {
+                res.status(200).json(stripeRes);
+            }
+        }
+    );
 })
 
 module.exports = router
