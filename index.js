@@ -8,32 +8,34 @@ const userprofiles = require("./routes/Users");
 const userskills = require("./routes/UsersSkills");
 const SavedJobs = require("./routes/Saved");
 const applyJobs = require("./routes/ApplyJobs");
+const Stripe = require("./routes/Stripe");
+
 const cors = require("cors");
 const app = express();
 
 dotenv.config();
 
 mongoose
-  .connect(process.env.Keypass)
-  .then(() => console.log("successful"))
-  .catch((err) => {
-    console.log(err);
-  });
+    .connect(process.env.Keypass)
+    .then(() => console.log("successful"))
+    .catch((err) => {
+        console.log(err);
+    });
 
 const corsOptions = {
-  origin: "*",
-  // methods: ["GET", "POST", "PUT", "PATCH"],
-  "Access-Control-Allow-Credentials": true,
-  // optionSuccessStatus: 200,
+    origin: "*",
+    // methods: ["GET", "POST", "PUT", "PATCH"],
+    "Access-Control-Allow-Credentials": true,
+    // optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
 
 app.use(express.json());
 
 app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
+    bodyParser.urlencoded({
+        extended: true,
+    })
 );
 
 app.use("/api", Jobsroute);
@@ -42,7 +44,9 @@ app.use("/api", authorization);
 app.use("/api", userprofiles);
 app.use("/api", SavedJobs);
 app.use("/api", applyJobs);
+app.use("/api", Stripe);
 
-app.listen(process.env.PORT, function () {
-  console.log("started");
+
+app.listen(process.env.PORT, function() {
+    console.log("started");
 });
