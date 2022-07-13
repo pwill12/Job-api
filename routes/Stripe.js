@@ -1,6 +1,7 @@
 require("dotenv").config()
 const router = require("express").Router();
-const stripe = require("stripe")(process.env.STRIPE_KEY)
+const Stripe = require("stripe")
+const stripe = new Stripe('sk_test_51KoT8oGgiVZF9GXJi15T2ED4V996wTbRjOIl7j7ppTIh6SFuYfBGjceDzWnuv66ZpCch0nTYZxgxXKhwIwlGi7nk00uRDSt2Ve')
     // const cors = require("cors")
 
 router.post("/payment", async(req, res) => {
