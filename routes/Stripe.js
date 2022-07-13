@@ -8,17 +8,12 @@ router.post("/payment", async(req, res) => {
     let { amount, id } = req.body
     try {
         const payment = await stripe.paymentIntents.create({
-                amount,
-                currency: "USD",
-                description: "Will",
-                payment_method: id,
-                // confirm: true
-            })
-            // console.log("Payment", payment)
-            // res.json({
-            //     message: "Payment successful",
-            //     success: true
-            // })
+            amount,
+            currency: "USD",
+            description: "Will",
+            payment_method: id,
+            confirm: true
+        })
         if (res.statusCode === 200) {
             res.json(payment)
         } else {
@@ -31,21 +26,6 @@ router.post("/payment", async(req, res) => {
             failed: error
         })
     }
-
-    // stripe.charges.create({
-    //         amount,
-    //         payment_id: id,
-    //         //   amount: req.body.amount,
-    //         currency: "usd",
-    //     },
-    //     (stripeErr, stripeRes) => {
-    //         if (stripeErr) {
-    //             res.status(500).json(stripeErr);
-    //         } else {
-    //             res.status(200).json(stripeRes);
-    //         }
-    //     }
-    // );
 })
 
 module.exports = router
