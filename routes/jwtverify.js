@@ -34,8 +34,19 @@ const verifyTokenAndAdmin = (req, res, next) => {
     });
 };
 
+const verifyTokenAndEmployer = (req, res, next) => {
+    verifyToken(req, res, () => {
+        if (req.user.isEmployer) {
+            next();
+        } else {
+            res.status(403).json("You are not alowed to do that!");
+        }
+    });
+};
+
 module.exports = {
     verifyToken,
     verifyTokenAndAuthorization,
     verifyTokenAndAdmin,
+    verifyTokenAndEmployer
 };
