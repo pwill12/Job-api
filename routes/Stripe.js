@@ -7,17 +7,22 @@ router.post("/payment", async(req, res) => {
     let { amount, id } = req.body
     try {
         const payment = await stripe.charges.create({
-            amount,
-            currency: "USD",
-            description: "Will",
-            payment_method: id,
-            confirm: true
-        })
-        console.log("Payment", payment)
-        res.json({
-            message: "Payment successful",
-            success: true
-        })
+                amount,
+                currency: "USD",
+                description: "Will",
+                payment_method: id,
+                // confirm: true
+            })
+            // console.log("Payment", payment)
+            // res.json({
+            //     message: "Payment successful",
+            //     success: true
+            // })
+        if (res.statusCode === 200) {
+            res.json(payment)
+        } else {
+            res.json('not found')
+        }
     } catch (error) {
         console.log("Error", error)
         res.json({
