@@ -3,11 +3,30 @@ const Employers = require("../models/Employers");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 
-router.post("/registeradmin", async(req, res) => {
+router.post("/admindetails", async(req, res) => {
 
     const newUser = new Employers({
         website: req.body.website,
         location: req.body.location,
+        email: req.body.email,
+        name: req.body.email,
+        // password: CryptoJS.AES.encrypt(
+        //     req.body.password,
+        //     process.env.PASS_SEC
+        // ).toString(),
+    });
+
+    try {
+        const savedUser = await newUser.save();
+        res.status(201).json(savedUser);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.post("/adminregister", async(req, res) => {
+
+    const newUser = new Employers({
         email: req.body.email,
         password: CryptoJS.AES.encrypt(
             req.body.password,
