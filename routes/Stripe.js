@@ -6,7 +6,7 @@ const stripe = require("stripe")(process.env.STRIPE_KEY)
 router.post("/payment", async(req, res) => {
     let { amount, id } = req.body
     try {
-        const payment = await stripe.charges.create({
+        const payment = await stripe.paymentIntents.create({
                 amount,
                 currency: "USD",
                 description: "Will",
@@ -27,7 +27,7 @@ router.post("/payment", async(req, res) => {
         console.log("Error", error)
         res.json({
             message: "Payment failed",
-            success: false
+            failed: error
         })
     }
 
