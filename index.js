@@ -10,7 +10,6 @@ const SavedJobs = require("./routes/Saved");
 const applyJobs = require("./routes/ApplyJobs");
 const Stripe = require("./routes/Stripe");
 const Employers = require("./routes/EmployersAuth");
-const EmployersUpdate = require("./routes/EmployersRoute");
 
 
 
@@ -50,8 +49,6 @@ app.use("/api", SavedJobs);
 app.use("/api", applyJobs);
 app.use("/api", Stripe);
 app.use("/api", Employers);
-app.use("/api", EmployersUpdate);
-
 
 app.listen(process.env.PORT, function() {
     console.log("started");
