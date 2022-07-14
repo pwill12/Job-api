@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Employers = require("../models/Employers");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
+const EmployerSignup = require("../models/EmployerSignup");
 
 router.post("/admindetails", async(req, res) => {
 
@@ -26,7 +27,7 @@ router.post("/admindetails", async(req, res) => {
 
 router.post("/adminregister", async(req, res) => {
 
-    const newUser = new Employers({
+    const newUser = new EmployerSignup({
         email: req.body.email,
         password: CryptoJS.AES.encrypt(
             req.body.password,
