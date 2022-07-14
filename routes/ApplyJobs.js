@@ -1,5 +1,4 @@
 const Apply = require("../models/Apply");
-const Jobs = require("../models/Jobs");
 const { verifyTokenAndAuthorization, verifyToken } = require("./jwtverify");
 const router = require("express").Router();
 
