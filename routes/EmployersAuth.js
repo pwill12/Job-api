@@ -45,7 +45,7 @@ router.post("/adminregister", async(req, res) => {
 
 router.post("/loginadmin", async(req, res) => {
     try {
-        const user = await Employers.findOne({ email: req.body.email });
+        const user = await EmployerSignup.findOne({ email: req.body.email });
 
         if (!user) {
             res.status(401).json("Wrong email")
