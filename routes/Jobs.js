@@ -22,7 +22,7 @@ router.post("/jobs", verifyTokenAndEmployer, async function(req, res) {
 router.get("/findjobs/:id", async function(req, res) {
     try {
         const getJobs = await Jobs.findById(req.params.id);
-        res.header("Access-Control-Allow-Origin", "*");
+        // res.header("Access-Control-Allow-Origin", "*");
         res.status(200).json(getJobs);
     } catch (err) {
         res.status(500).json(err);
@@ -37,7 +37,7 @@ router.get("/findjobs", async function(req, res) {
 
         if (qNews) {
             const Jobs = await Jobs.find().sort({ createdAt: -1 }).limit(1);
-            res.header("Access-Control-Allow-Origin", "*");
+            // res.header("Access-Control-Allow-Origin", "*");
             res.status(200).json(Jobs);
         } else if (qtags) {
             Jobs.find({
