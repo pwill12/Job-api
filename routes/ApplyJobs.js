@@ -54,4 +54,16 @@ router.get("/findapplied/:id", async function(req, res) {
     }
 });
 
+router.get("/adminfind/:id", async function(req, res) {
+    const myemployer = req.params.id;
+    try {
+        const user = await Apply.find({
+            employerId: myemployer
+        });
+        res.status(200).json(user);
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 module.exports = router;
