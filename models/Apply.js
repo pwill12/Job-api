@@ -4,7 +4,10 @@ const ApplySchema = new mongoose.Schema({
     user: { type: String },
     jobitems: [{
         jobs: { type: String, required: true },
-        employerId: { type: String, required: true },
+        employerId: {
+            type: String,
+            required: true
+        },
         username: { type: String, required: true },
         email: { type: String, required: true },
         cover: { type: String, required: true },
