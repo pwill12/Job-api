@@ -51,14 +51,14 @@ router.get("/findjobs", async function(req, res) {
                         console.log(error);
                     } else {
                         // console.log(data);
-                        res.header("Access-Control-Allow-Origin", "*");
+                        // res.header("Access-Control-Allow-Origin", "*");
                         res.status(200).json(data);
                     }
                 }
             );
         } else {
             const getJobs = await Jobs.find();
-            res.header("Access-Control-Allow-Origin", "*");
+            // res.header("Access-Control-Allow-Origin", "*");
             res.status(200).json(getJobs);
         }
     } catch (error) {
