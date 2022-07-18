@@ -31,12 +31,6 @@ router.post("/apply", async(req, res) => {
                 );
                 const apply = newApplied.save()
                 res.status(200).json(apply)
-                    // newApplied.save((error, applieds) => {
-                    //   if (error) return res.status(400).json({ error });
-                    //   if (applieds) {
-                    //     return res.status(201).json({ applieds });
-                    //   }
-                    // });
             }
         });
     } catch (error) {
