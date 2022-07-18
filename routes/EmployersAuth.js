@@ -11,10 +11,7 @@ router.post("/admindetails", async(req, res) => {
         location: req.body.location,
         email: req.body.email,
         name: req.body.name,
-        // password: CryptoJS.AES.encrypt(
-        //     req.body.password,
-        //     process.env.PASS_SEC
-        // ).toString(),
+
     });
 
     try {

@@ -30,14 +30,12 @@ router.get("/findjobs/:id", async function(req, res) {
 });
 
 router.get("/findjobs", async function(req, res) {
-    let qNew = req.query.new;
+    let qNews = req.query.new;
     const qtags = req.query.tags;
 
     try {
-        //   const getJobs = await Jobs.find()
-        //   res.status(200).json(getJobs);
 
-        if (qNew) {
+        if (qNews) {
             const Jobs = await Jobs.find().sort({ createdAt: -1 }).limit(1);
             res.header("Access-Control-Allow-Origin", "*");
             res.status(200).json(Jobs);
