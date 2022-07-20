@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const ApplySchema = new mongoose.Schema({
     user: { type: String },
-    employerId: { type: String },
     jobitems: [{
+        employerId: { type: String },
         jobs: { type: String },
         username: { type: String },
         email: { type: String },
