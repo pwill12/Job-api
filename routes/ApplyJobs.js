@@ -48,4 +48,14 @@ router.get("/findapplied/:id", async function(req, res) {
     }
 });
 
+router.get("/findadmin/:id", async function(req, res) {
+    const myadminid = req.params.id;
+    try {
+        const admin = await Apply.findOne({ 'employerId': myadminid });
+        res.status(200).json(admin);
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 module.exports = router;
