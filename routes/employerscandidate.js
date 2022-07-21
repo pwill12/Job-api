@@ -38,10 +38,10 @@ router.post("/candapply", async(req, res) => {
     }
 });
 
-router.get("/candidateapplied/:id", async function(req, res) {
-    const qtags = req.params.employerId;
+router.get("/candidateapplied", async function(req, res) {
+    const qtags = req.query.ids;
     try {
-        const users = await Employerscandidate.findOne({
+        const users = await Employerscandidate.find({
             employerId: qtags
         });
         res.status(200).json(users);
