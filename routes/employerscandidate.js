@@ -41,8 +41,8 @@ router.post("/candapply", async(req, res) => {
 router.get("/candidateapplied/:id", async function(req, res) {
     const myuserids = req.params.employerId;
     try {
-        const user = await Apply.findOne({ 'employerId': myuserids });
-        res.status(200).json(user);
+        const users = await Apply.find({ 'employerId': myuserids });
+        res.status(200).json(users);
     } catch (error) {
         console.log(error);
     }
