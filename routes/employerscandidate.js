@@ -4,7 +4,7 @@ const router = require("express").Router();
 
 router.post("/candapply", async(req, res) => {
     try {
-        Employerscandidate.findOne({ 'employersId': req.body.user }).exec((err, jobs) => {
+        Employerscandidate.findOne({ 'employerId': req.body.user }).exec((err, jobs) => {
             if (err) return res.status(400).json({ err });
             if (jobs) {
                 const myjobs = req.body.jobitems.jobs;
@@ -12,7 +12,7 @@ router.post("/candapply", async(req, res) => {
                 if (alreadyapplied) {
                     res.status(401).json("already applied");
                 } else {
-                    Employerscandidate.findOneAndUpdate({ employersId: req.body.employersId }, {
+                    Employerscandidate.findOneAndUpdate({ employerId: req.body.employerId }, {
                         $push: {
                             jobitems: req.body.jobitems,
                         },
@@ -39,9 +39,9 @@ router.post("/candapply", async(req, res) => {
 });
 
 router.get("/candidateapplied/:id", async function(req, res) {
-    const myuserid = req.params.employersId;
+    const myuserid = req.params.employerId;
     try {
-        const user = await Apply.findOne({ 'employersId': myuserid });
+        const user = await Apply.findOne({ 'employerId': myuserid });
         res.status(200).json(user);
     } catch (error) {
         console.log(error);
