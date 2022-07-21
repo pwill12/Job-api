@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const EmployerscandidatesSchema = new mongoose.Schema({
     employerId: { type: String },
     jobitems: [{
+        user: { type: String },
         jobs: { type: String },
         username: { type: String },
         email: { type: String },

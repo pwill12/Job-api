@@ -7,8 +7,8 @@ router.post("/candapply", async(req, res) => {
         Employerscandidate.findOne({ 'employerId': req.body.user }).exec((err, jobs) => {
             if (err) return res.status(400).json({ err });
             if (jobs) {
-                const myjobs = req.body.jobitems.jobs;
-                const alreadyapplied = jobs.jobitems.find((c) => c.jobs == myjobs);
+                const myjobs = req.body.jobitems.user;
+                const alreadyapplied = jobs.jobitems.find((c) => c.user == myjobs);
                 if (alreadyapplied) {
                     res.status(401).json("already applied");
                 } else {
