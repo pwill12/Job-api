@@ -4,7 +4,7 @@ const router = require("express").Router();
 
 router.post("/candapply", async(req, res) => {
     try {
-        Employerscandidate.findOne({ 'employerId': req.body.user }).exec((err, jobs) => {
+        Employerscandidate.findOne({ 'employerId': req.body.employerId }).exec((err, jobs) => {
             if (err) return res.status(400).json({ err });
             if (jobs) {
                 const myjobs = req.body.jobitems.user;
