@@ -12,7 +12,7 @@ router.post("/candapply", async(req, res) => {
                 if (alreadyapplied) {
                     res.status(401).json("already applied");
                 } else {
-                    Employerscandidate.findOneAndUpdate({ employerId: req.body.employerId }, {
+                    Employerscandidate.findOneAndUpdate({ jobId: req.body.jobId }, {
                         $push: {
                             jobitems: req.body.jobitems,
                         },
