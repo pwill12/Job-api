@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const EmployerscandidatesSchema = new mongoose.Schema({
+    jobId: { type: String },
     employerId: { type: String },
     jobitems: [{
         user: { type: String },
@@ -8,9 +9,11 @@ const EmployerscandidatesSchema = new mongoose.Schema({
         username: { type: String },
         email: { type: String },
         cover: { type: String },
-        projectlinks: { type: String }
-    }]
+        projectlinks: { type: String },
+    }, ],
 }, { timestamps: true });
 
-
-module.exports = mongoose.model('Employerscandidates', EmployerscandidatesSchema);
+module.exports = mongoose.model(
+    "Employerscandidates",
+    EmployerscandidatesSchema
+);
