@@ -42,7 +42,7 @@ router.get("/candidateapplied", async function(req, res) {
     const qtags = req.query.ids;
     try {
         const users = await Employerscandidate.find({
-            jobId: qtags
+            employerId: qtags
         });
         res.status(200).json(users);
     } catch (error) {
