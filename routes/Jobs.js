@@ -66,5 +66,17 @@ router.get("/findjobs", async function(req, res) {
     }
 });
 
+router.get("/jobsemployee", async function(req, res) {
+    const qtags = req.query.jobs;
+    try {
+        const users = await Jobs.find({
+            employerId: qtags
+        });
+        res.status(200).json(users);
+    } catch (error) {
+        console.log(error);
+    }
+});
+
 
 module.exports = router;
