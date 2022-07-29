@@ -13,7 +13,7 @@ const UserSchema = new mongoose.Schema({
     instagram: { type: String },
     twitter: { type: String },
     skills: { type: Array },
-    location: { type: Array, required: false },
+    location: { type: String, required: false },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true, },
     isAdmin: {
