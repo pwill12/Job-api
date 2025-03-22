@@ -38,15 +38,14 @@ router.get("/findjobs", async function (req, res) {
     const searchFilter = {
         title: { $regex: query.search, $options: "i" }
     }
-    const posts = await Post.find(query.search ? searchFilter : null)
-    res.status(200).json(posts)
 
     try {
 
-        if (qNews) {
-            const Jobs = await Jobs.find().sort({ createdAt: -1 }).limit(1);
+        if (searchFilter) {
+            // const Jobs = await Jobs.find().sort({ createdAt: -1 }).limit(1);
+            const jobs = await Post.find(query.search ? searchFilter : null)
+            res.status(200).json(jobs)
             // res.header("Access-Control-Allow-Origin", "*");
-            res.status(200).json(Jobs);
         } else if (qtags) {
             Jobs.find({
                 // categories: {
@@ -65,11 +64,6 @@ router.get("/findjobs", async function (req, res) {
                 }
             );
         }
-        else if (searchFilter) {
-            const jobs = await Post.find(query.search ? searchFilter : null)
-            res.status(200).json(jobs)
-        }
-
         else {
             const getJobs = await Jobs.find();
             // res.header("Access-Control-Allow-Origin", "*");
