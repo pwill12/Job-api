@@ -9,7 +9,7 @@ const {
     verifyTokenAndEmployer,
 } = require("./jwtverify");
 
-router.post("/jobs", verifyTokenAndEmployer, async function(req, res) {
+router.post("/jobs", verifyTokenAndEmployer, async function (req, res) {
     const newJobsPost = new Jobs(req.body);
     try {
         const JobsPost = await newJobsPost.save();
@@ -19,7 +19,7 @@ router.post("/jobs", verifyTokenAndEmployer, async function(req, res) {
     }
 });
 
-router.get("/findjobs/:id", async function(req, res) {
+router.get("/findjobs/:id", async function (req, res) {
     try {
         const getJobs = await Jobs.findById(req.params.id);
         // res.header("Access-Control-Allow-Origin", "*");
@@ -29,9 +29,17 @@ router.get("/findjobs/:id", async function(req, res) {
     }
 });
 
-router.get("/findjobs", async function(req, res) {
+router.get("/findjobs", async function (req, res) {
     let qNews = req.query.new;
     const qtags = req.query.tags;
+
+    const query = req.query
+
+    const searchFilter = {
+        title: { $regex: query.search, $options: "i" }
+    }
+    const posts = await Post.find(query.search ? searchFilter : null)
+    res.status(200).json(posts)
 
     try {
 
@@ -41,11 +49,11 @@ router.get("/findjobs", async function(req, res) {
             res.status(200).json(Jobs);
         } else if (qtags) {
             Jobs.find({
-                    // categories: {
-                    //   $in: [qCategory],
-                    // },
-                    tag: qtags,
-                },
+                // categories: {
+                //   $in: [qCategory],
+                // },
+                tag: qtags,
+            },
                 (error, data) => {
                     if (error) {
                         console.log(error);
@@ -56,7 +64,13 @@ router.get("/findjobs", async function(req, res) {
                     }
                 }
             );
-        } else {
+        }
+        else if (searchFilter) {
+            const jobs = await Post.find(query.search ? searchFilter : null)
+            res.status(200).json(jobs)
+        }
+
+        else {
             const getJobs = await Jobs.find();
             // res.header("Access-Control-Allow-Origin", "*");
             res.status(200).json(getJobs);
@@ -66,7 +80,7 @@ router.get("/findjobs", async function(req, res) {
     }
 });
 
-router.get("/jobsemployee", async function(req, res) {
+router.get("/jobsemployee", async function (req, res) {
     const qtags = req.query.jobs;
     try {
         const users = await Jobs.find({
