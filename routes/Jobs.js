@@ -95,7 +95,7 @@ router.get('/findjob', async (req, res) => {
             const jobs = await Jobs.find(searchFilter)
             res.status(200).json(jobs)
         }
-        res.status(404).json('null')
+        res.status(500).json(null)
     }
 
     catch (error) {
