@@ -91,11 +91,11 @@ router.get('/findjob', async (req, res) => {
         title: { $regex: query.search, $options: "i" }
     }
     try {
-        if (searchFilter) {
-            const jobs = await Jobs.find(searchFilter)
+        if (query.search) {
+            const jobs = await Jobs.find(query.search ? searchFilter : null)
             res.status(200).json(jobs)
         }
-        res.status(500).json(null)
+        res.status(404).json(null)
     }
 
     catch (error) {
