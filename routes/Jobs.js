@@ -85,5 +85,21 @@ router.get("/jobsemployee", async function (req, res) {
     }
 });
 
+router.get('/search', async (req,res) => {
+    const searchFilter = {
+        title: { $regex: query.q, $options: "i" }
+    }
+    try {
+        if (searchFilter) {
+            const jobs = await Jobs.find(query.q ? searchFilter : null)
+            res.status(200).json(jobs)
+        }
+        res.send(null)
+        
+    } catch (error) {
+        res.status(500).json(error);
+    }
+})
+
 
 module.exports = router;
