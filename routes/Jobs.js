@@ -85,7 +85,7 @@ router.get("/jobsemployee", async function (req, res) {
     }
 });
 
-router.get('/search', async (req,res) => {
+router.get('/findjobs/search', async (req,res) => {
     const searchFilter = {
         title: { $regex: query.q, $options: "i" }
     }
