@@ -85,16 +85,16 @@ router.get("/jobsemployee", async function (req, res) {
     }
 });
 
-router.get('/findjobs/search', async (req,res) => {
+router.get('/findjob', async (req,res) => {
     const searchFilter = {
-        title: { $regex: query.q, $options: "i" }
+        title: { $regex: query.search, $options: "i" }
     }
     try {
         if (searchFilter) {
-            const jobs = await Jobs.find(query.q ? searchFilter : null)
+            const jobs = await Jobs.find(query.search ? searchFilter : null)
             res.status(200).json(jobs)
         }
-        res.send(null)
+        res.status(400).json('no jobs found')
         
     } catch (error) {
         res.status(500).json(error);
