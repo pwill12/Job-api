@@ -92,7 +92,7 @@ router.get('/findjob', async (req, res) => {
     }
     try {
         if (searchFilter) {
-            const jobs = await Jobs.find(query.search ? searchFilter : null)
+            const jobs = await Jobs.find(searchFilter)
             res.status(200).json(jobs)
         }
         res.status(404).json(null)
