@@ -30,19 +30,13 @@ router.get("/findjobs/:id", async function (req, res) {
 });
 
 router.get("/findjobs", async function (req, res) {
-    // let qNews = req.query.new;
-    const query = req.query
+    let qNews = req.query.new;
     const qtags = req.query.tags;
-
-    const searchFilter = {
-        title: { $regex: query.search, $options: "i" }
-    }
 
     try {
 
-        if (searchFilter) {
-            // const Jobs = await Jobs.find().sort({ createdAt: -1 }).limit(1);
-            const jobs = await Jobs.find(query.search ? searchFilter : null)
+        if (qNews) {
+            const Jobs = await Jobs.find().sort({ createdAt: -1 }).limit(1);
             res.status(200).json(jobs)
             // res.header("Access-Control-Allow-Origin", "*");
         } else if (qtags) {
