@@ -9,7 +9,7 @@ const {
     verifyTokenAndEmployer,
 } = require("./jwtverify");
 
-router.post("/jobs", verifyTokenAndEmployer, async function (req, res) {
+router.post("/jobs", verifyToken, async function (req, res) {
     const newJobsPost = new Jobs(req.body);
     try {
         const JobsPost = await newJobsPost.save();
