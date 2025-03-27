@@ -58,7 +58,7 @@ router.get("/findjobs", async function (req, res) {
             );
         }
         else {
-            const getJobs = await Jobs.find();
+            const getJobs = await Jobs.find().sort({createdAt: -1});
             // res.header("Access-Control-Allow-Origin", "*");
             res.status(200).json(getJobs);
         }
