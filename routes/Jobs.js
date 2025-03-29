@@ -98,7 +98,7 @@ router.get('/findjob', async (req, res) => {
     }
 })
 
-router.post('/upload-imgs', async (req, res) => {
+router.get('/upload-imgs', async (req, res) => {
     const imagekit = new ImageKit({
         urlEndpoint: process.env.IK_URL_ENDPOINT,
         publicKey: process.env.IK_PUBLIC_KEY,
