@@ -1,4 +1,4 @@
-import ImageKit from "imagekit";
+const ImageKit = require('imagekit')
 
 const router = require("express").Router();
 
@@ -98,13 +98,12 @@ router.get('/findjob', async (req, res) => {
     }
 })
 
-const imagekit = new ImageKit({
-    urlEndpoint: 'https://ik.imagekit.io/will12/',
-    publicKey: 'public_QMQN1tBnkw0Q+hkD2omgRU7EYoc=',
-    privateKey: 'private_44o0UY0FrT6KJ+sj2RbXvlikwA8=',
-});
-
-router.post('/upload-img', async (req, res) => {
+router.post('/upload-imgs', async (req, res) => {
+    const imagekit = new ImageKit({
+        urlEndpoint: process.env.IK_URL_ENDPOINT,
+        publicKey: process.env.IK_PUBLIC_KEY,
+        privateKey: process.env.IK_PRIVATE_KEY,
+    });
     const result = imagekit.getAuthenticationParameters();
     res.send(result);
 });
