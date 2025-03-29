@@ -12,9 +12,6 @@ const Stripe = require("./routes/Stripe");
 const Employers = require("./routes/EmployersAuth");
 const employerscandidate = require("./routes/employerscandidate");
 
-
-
-
 const cors = require("cors");
 const app = express();
 

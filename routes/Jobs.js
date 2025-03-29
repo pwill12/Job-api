@@ -1,3 +1,5 @@
+import ImageKit from "imagekit";
+
 const router = require("express").Router();
 
 const Jobs = require("../models/Jobs");
@@ -58,7 +60,7 @@ router.get("/findjobs", async function (req, res) {
             );
         }
         else {
-            const getJobs = await Jobs.find().sort({createdAt: -1});
+            const getJobs = await Jobs.find().sort({ createdAt: -1 });
             // res.header("Access-Control-Allow-Origin", "*");
             res.status(200).json(getJobs);
         }
@@ -95,6 +97,17 @@ router.get('/findjob', async (req, res) => {
         res.status(500).json(error);
     }
 })
+
+const imagekit = new ImageKit({
+    urlEndpoint: 'https://ik.imagekit.io/will12/',
+    publicKey: 'public_QMQN1tBnkw0Q+hkD2omgRU7EYoc=',
+    privateKey: 'private_44o0UY0FrT6KJ+sj2RbXvlikwA8=',
+});
+
+router.post('/upload-img', async (req, res) => {
+    const result = imagekit.getAuthenticationParameters();
+    res.send(result);
+});
 
 
 module.exports = router;
